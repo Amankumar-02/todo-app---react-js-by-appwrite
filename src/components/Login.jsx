@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import authService from '../appwrite/auth'
 import {useNavigate} from 'react-router-dom'
 // import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 function Login() {
   const navigate = useNavigate();
@@ -16,8 +17,10 @@ function Login() {
       await authService.login({email:user.email, password:user.password});
       navigate('/profile/');
       console.log(`Login SuccessFully`)
+      toast.success('Successfully Login!');
     } catch (error) {
       console.error('Log-in failed:', error);
+      toast.error(error.message);
     }
   }
   return (

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import TodoForm from "./TodoForm";
 import Todos from "./Todos";
+import toast from 'react-hot-toast';
 
 function Profile() {
   const navigate = useNavigate();
@@ -27,8 +28,10 @@ function Profile() {
       await authService.logout();
       navigate('/');
       console.log(`Logout SuccessFully`)
+      toast.success('Successfully Logout!');
     } catch (error) {
       console.error('Log-out failed:', error);
+      toast.error(error.message);
     }
   }
 

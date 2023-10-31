@@ -1,6 +1,6 @@
 import React, {useState,} from "react";
 import appwriteService from "../appwrite/database";
-// import config from '../config/config'
+import toast from 'react-hot-toast';
 
 function TodoForm() {
   const [todo, setTodo] = useState('');
@@ -10,8 +10,10 @@ function TodoForm() {
     try {
       await appwriteService.createDatabase({todo:todo});
       console.log(`todo added`)
+      toast.success('Todo Added!');
     } catch (error) {
       console.error('Database creation failed:', error);
+      toast.error(error.message);
     }
     window.location.reload()
     e.target.reset();

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import authService from '../appwrite/auth'
 import {useNavigate} from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -15,8 +16,10 @@ function SignUp() {
       await authService.createAccount({email:user.email, password:user.password, name:user.name});
       console.log(`Signup SuccessFully`)
       navigate('/profile');
+      toast.success('Successfully Signup!');
     } catch (error) {
       console.error('Sign-up failed:', error);
+      toast.error(error.message);
     }
   }
   return (
