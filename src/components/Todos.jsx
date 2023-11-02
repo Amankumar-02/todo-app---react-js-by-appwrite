@@ -36,6 +36,11 @@ function Todos({userId}) {
         ) : (
           <div>
           {todos &&  todos.map((item)=>{
+            // console.log(userId == item.$permissions[0].slice(11,-2))
+            // console.log(userId)
+            // console.log(item)
+            // console.log(item.$permissions[0])
+            // console.log("break")
             if(userId == item.$permissions[0].slice(11,-2)){ 
               return(
             <div key={item.$id}>
